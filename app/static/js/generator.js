@@ -1896,7 +1896,7 @@ function _showGenerateAllReportModal(alreadyDone) {
         };
 
         overlay.innerHTML = `
-            <div class="lightbox-panel" style="max-width: 34rem; background:#0f172a; border-radius:0.75rem; padding:1.5rem; text-align:left;">
+            <div class="lightbox-panel" style="max-width: 34rem; background:#0f172a; border-radius:0.75rem; padding:1.5rem; text-align:left; display:block;">
                 <h3 style="color:#fca5a5; margin-top:0;"><i class="fas fa-triangle-exclamation"></i> Generate All — please review before continuing</h3>
                 <p class="agent-card-summary-text">The following step(s) already have generated content:</p>
                 <div class="agent-card-logs" style="margin:0.75rem 0;">${rows}</div>
