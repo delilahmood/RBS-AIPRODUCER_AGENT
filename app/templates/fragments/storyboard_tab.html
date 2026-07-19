@@ -1,0 +1,100 @@
+<div class="p-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h2 class="text-3xl font-bold text-white mb-2">Storyboard</h2>
+            <p class="text-slate-400">Visual prompts optimized for Wan / HappyHorse</p>
+        </div>
+        <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+            <i class="fas fa-magic"></i>
+            Generate All Prompts
+        </button>
+    </div>
+
+    <!-- Storyboard Grid -->
+    <div class="grid grid-cols-4 gap-4 mb-8">
+        
+        <!-- Shot 1 -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden hover-lift cursor-pointer">
+            <div class="aspect-video bg-gradient-to-br from-purple-900/50 to-slate-900 flex items-center justify-center">
+                <i class="fas fa-image text-3xl text-slate-600"></i>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Shot 1</span>
+                    <span class="text-xs text-slate-500">Wide</span>
+                </div>
+                <p class="text-xs text-slate-400 line-clamp-3">Vast underground chamber, swirling dimensional rifts, blue-purple energy, cinematic lighting, anime style...</p>
+            </div>
+        </div>
+
+        <!-- Shot 2 -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden hover-lift cursor-pointer">
+            <div class="aspect-video bg-gradient-to-br from-blue-900/50 to-slate-900 flex items-center justify-center">
+                <i class="fas fa-image text-3xl text-slate-600"></i>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Shot 2</span>
+                    <span class="text-xs text-slate-500">Medium</span>
+                </div>
+                <p class="text-xs text-slate-400 line-clamp-3">Kairo Ash from behind, battle-worn armor, hand reaching toward glowing control panel, dramatic shadows...</p>
+            </div>
+        </div>
+
+        <!-- Shot 3 -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden hover-lift cursor-pointer">
+            <div class="aspect-video bg-gradient-to-br from-pink-900/50 to-slate-900 flex items-center justify-center">
+                <i class="fas fa-image text-3xl text-slate-600"></i>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Shot 3</span>
+                    <span class="text-xs text-slate-500">Close-up</span>
+                </div>
+                <p class="text-xs text-slate-400 line-clamp-3">Close-up on Kairo's face, determined expression, purple light reflecting in eyes, anime style, detailed...</p>
+            </div>
+        </div>
+
+        <!-- Shot 4 -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden hover-lift cursor-pointer">
+            <div class="aspect-video bg-gradient-to-br from-red-900/50 to-slate-900 flex items-center justify-center">
+                <i class="fas fa-image text-3xl text-slate-600"></i>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Shot 4</span>
+                    <span class="text-xs text-slate-500">Dynamic</span>
+                </div>
+                <p class="text-xs text-slate-400 line-clamp-3">Explosion of light from rift, Kairo thrown backward, energy waves, motion blur, cinematic action shot...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Prompt Editor -->
+    <div class="bg-slate-800/80 rounded-xl border border-slate-700 p-6">
+        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fas fa-edit text-purple-400"></i>
+            Edit Prompt - Shot 1
+        </h3>
+        <textarea rows="4" class="form-input w-full bg-slate-950/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none resize-none mb-4">Vast underground chamber, swirling dimensional rifts, blue-purple energy, cinematic lighting, anime style, 4K, detailed, dramatic atmosphere</textarea>
+        
+        <div class="flex items-center justify-between">
+            <div class="flex gap-2">
+                <span class="text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded">Style: Anime</span>
+                <span class="text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded">Ratio: 16:9</span>
+                <span class="text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded">Model: Wan</span>
+            </div>
+            <div class="flex gap-2">
+                <button class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm flex items-center gap-1">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded text-sm flex items-center gap-1">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

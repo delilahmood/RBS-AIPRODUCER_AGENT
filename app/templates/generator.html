@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBS AIProducer - Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/generator.css">
+</head>
+<body class="bg-slate-950 text-slate-100 h-screen overflow-hidden flex flex-col">
+
+    <!-- HEADER -->
+    <header class="gen-header">
+        <div class="gen-header-left">
+            <a href="/dashboard" class="gen-back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="gen-logo">
+                <i class="fas fa-film"></i>
+            </div>
+            <div class="gen-header-info">
+                <h1 class="gen-header-title">
+                    <span id="header-project-title">Loading Project...</span>
+                    <span id="header-project-status" class="status-badge status-pending ml-2">Initializing</span>
+                </h1>
+                <p class="gen-header-subtitle">Production Pipeline</p>
+            </div>
+        </div>
+        
+        <div class="gen-header-actions">
+            <div class="export-dropdown">
+                <button id="btn-export" class="btn-secondary" onclick="toggleExportMenu(event)">
+                    <i class="fas fa-download"></i>Export
+                </button>
+                <div id="export-menu" class="export-menu">
+                    <div class="export-menu-label">Full Production Bible</div>
+                    <a href="#" onclick="downloadExport('all', 'pdf'); return false;"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="#" onclick="downloadExport('all', 'markdown'); return false;"><i class="fas fa-file-lines"></i> Markdown</a>
+                </div>
+            </div>
+            <button id="btn-save-params" class="btn-secondary">
+                <i class="fas fa-save"></i>Save
+            </button>
+            <button id="btn-run-generation" class="btn-primary">
+                <i class="fas fa-play"></i>Generate All
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="gen-main">
+        
+        <!-- LEFT COLUMN: Parameters -->
+        <aside class="gen-sidebar">
+            <div class="gen-sidebar-header">
+                <h2 class="gen-sidebar-title">
+                    <i class="fas fa-sliders-h"></i>Project Settings
+                </h2>
+            </div>
+            
+            <div class="gen-sidebar-content custom-scroll">
+
+            <!-- Project Type (DÉPLACÉ ICI - AVANT LE TITRE) -->
+            <div class="form-group">
+                <label class="form-label">Project Type</label>
+                <div class="type-selection-grid">
+                    <button type="button" class="type-btn active" data-type="short_drama" onclick="selectProjectType('short_drama')">
+                        <i class="fas fa-film"></i>
+                        <span>Short Drama</span>
+                    </button>
+                    <button type="button" class="type-btn" data-type="series" onclick="selectProjectType('series')" style="display:none;">
+                        <i class="fas fa-tv"></i>
+                        <span>Series</span>
+                    </button>
+                    <button type="button" class="type-btn" data-type="film" onclick="selectProjectType('film')">
+                        <i class="fas fa-video"></i>
+                        <span>Short Movie</span>
+                    </button>
+                </div>
+            </div>                
+                <!-- Title & Idea -->
+                <div class="form-group">
+                    <label class="form-label">Project Title *</label>
+                    <input type="text" id="gen-title" class="form-input" placeholder="e.g., Lucy: Cyberpunk Hunter">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Project Idea *</label>
+                    <textarea id="gen-idea" rows="3" class="form-textarea" placeholder="Describe the core concept..."></textarea>
+                </div>
+
+
+                <!-- Type & Season & Duration -->
+                <div class="form-row" id="gen-season-row" style="display:none;">
+                    <div class="form-group">
+                        <label class="form-label">Season</label>
+                        <input type="number" id="gen-season" value="1" min="1" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Episodes</label>
+                        <input type="number" id="gen-episodes" value="2" min="2" max="5" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" id="gen-duration-label">Duration (seconds)</label>
+                        <input type="number" id="gen-duration" value="60" min="30" max="300" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Video Format</label>
+                        <select id="gen-aspect-ratio" class="form-input">
+                            <option value="16:9">16:9 (Landscape)</option>
+                            <option value="9:16">9:16 (Vertical)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" id="gen-serie-row" style="display:none;">
+                    <label class="form-label flex items-center gap-2">
+                        <input type="checkbox" id="gen-project-format">
+                        This project has a planned sequel (next season)
+                    </label>
+                </div>
+
+                <!-- Storytelling Style -->
+                <div class="form-group">
+                    <label class="form-label">Storytelling Style (Only one choice)</label>
+                    <div class="chips-container" id="gen-narrative-styles">
+                        <button type="button" class="chip narrative-chip" data-value="First Person">First Person</button>
+                        <button type="button" class="chip narrative-chip" data-value="Third Person">Third Person</button>
+                        <button type="button" class="chip narrative-chip" data-value="Dialogue Driven">Dialogue Driven</button>
+                    </div>
+                </div>
+
+                <!-- Genres -->
+                <div class="form-group">
+                    <label class="form-label">Genres (Max 3)</label>
+                    <div class="chips-container" id="gen-genres">
+                        <button type="button" class="chip genre-chip" data-value="Cyberpunk">Cyberpunk</button>
+                        <button type="button" class="chip genre-chip" data-value="Action">Action</button>
+                        <button type="button" class="chip genre-chip" data-value="Drama">Drama</button>
+                        <button type="button" class="chip genre-chip" data-value="Mystery">Mystery</button>
+                        <button type="button" class="chip genre-chip" data-value="Romance">Romance</button>
+                        <button type="button" class="chip genre-chip" data-value="Thriller">Thriller</button>
+                        <button type="button" class="chip genre-chip" data-value="Horror">Horror</button>
+                        <button type="button" class="chip genre-chip" data-value="Adventure">Adventure</button>
+                        <button type="button" class="chip genre-chip" data-value="Dark Fantasy">Dark Fantasy</button>
+                        <button type="button" class="chip genre-chip" data-value="Sci-Fi">Sci-Fi</button>
+                    </div>
+                </div>
+
+                <!-- Visual Styles -->
+                <div class="form-group">
+                    <label class="form-label">Visual Style</label>
+                    <div class="chips-container" id="gen-visual-styles">
+                        <button type="button" class="chip visual-chip" data-value="Anime">Anime</button>
+                        <button type="button" class="chip visual-chip" data-value="Manhwa">Manhwa</button>
+                        <button type="button" class="chip visual-chip" data-value="3D">3D</button>
+                        <button type="button" class="chip visual-chip" data-value="2D">2D</button>
+                        <button type="button" class="chip visual-chip" data-value="Realistic">Realistic</button>
+                        <button type="button" class="chip visual-chip" data-value="Watercolor">Watercolor</button>
+                    </div>
+                </div>
+
+                <!-- Reference Images -->
+                <div class="form-section">
+                    <label class="form-label">Reference Images & Style</label>
+                    <div class="ref-images-grid">
+                        <div class="ref-image-box" onclick="document.getElementById('input-ref-world').click()">
+                            <i class="fas fa-globe"></i>
+                            <span>World Style</span>
+                            <input type="file" id="input-ref-world" class="hidden" accept="image/*" onchange="handleImageUpload(event, 'world')">
+                        </div>
+                        <div class="ref-image-box" onclick="document.getElementById('input-ref-char').click()">
+                            <i class="fas fa-user"></i>
+                            <span>Char Style</span>
+                            <input type="file" id="input-ref-char" class="hidden" accept="image/*" onchange="handleImageUpload(event, 'character')">
+                        </div>
+                    </div>
+                    <div id="gen-ref-preview" class="ref-preview"></div>
+
+                    <div class="form-group">
+                        <label class="form-label" style="font-size:0.75rem;">🌍 World Style Prompt</label>
+                        <textarea id="gen-world-style" rows="2" class="form-textarea style-prompt" placeholder="Extracted from World image will appear here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="font-size:0.75rem;">👤 Character Style Prompt</label>
+                        <textarea id="gen-character-style" rows="2" class="form-textarea style-prompt" placeholder="Extracted from Character image will appear here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Workflow Steps -->
+                <div class="form-section">
+                    <label class="form-label">Generation Steps</label>
+                    <div class="workflow-steps">
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="synopsis" checked disabled>
+                            <span class="workflow-step-label">Synopsis & Hook</span>
+                            <span class="workflow-step-badge">Required</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="casting" checked>
+                            <span class="workflow-step-label">Character Casting</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="script" checked>
+                            <span class="workflow-step-label">Script Writing</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="images">
+                            <span class="workflow-step-label">Character Images</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="location_scout">
+                            <span class="workflow-step-label">Location Scouting</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="location_design">
+                            <span class="workflow-step-label">Location Design</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="shot_breakdown">
+                            <span class="workflow-step-label">Shot Breakdown</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="storyboard_art">
+                            <span class="workflow-step-label">Storyboard Art</span>
+                        </label>
+                        <label class="workflow-step-item">
+                            <input type="checkbox" class="workflow-step" data-step="scene_generator">
+                            <span class="workflow-step-label">Scene Generator (video)</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: Timeline -->
+        <section class="gen-timeline-container">
+            
+            <!-- Timeline Header -->
+            <div class="gen-timeline-header">
+                <h2 class="gen-timeline-title">
+                    <i class="fas fa-stream"></i> Production Timeline
+                </h2>
+                <div class="gen-timeline-progress">
+                    <span class="progress-label">Progress:</span>
+                    <span id="dash-progress-text" class="progress-value">0%</span>
+                    <div class="progress-bar-container">
+                        <div id="dash-progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Content -->
+            <div id="timeline-container" class="gen-timeline-content custom-scroll">
+                <div class="timeline-empty">
+                    <i class="fas fa-robot"></i>
+                    <p>Ready to produce. Configure parameters and click Generate...</p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="/static/js/generator.js"></script>
+</body>
+</html>

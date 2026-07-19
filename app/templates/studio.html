@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBS AIProducer - Studio Lucy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/studio.css">
+</head>
+<body class="h-screen overflow-hidden bg-slate-950 text-white">
+
+    <!-- Background Image -->
+    <div class="fixed inset-0 z-0">
+        <img src="/static/images/gardenbg2.png" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm"></div>
+    </div>
+
+    <!-- App Container -->
+    <div class="relative z-10 flex h-screen">
+
+        <!-- ========== SIDEBAR GAUCHE ========== -->
+        <aside class="w-64 bg-slate-900/80 backdrop-blur-md border-r border-slate-700/50 flex flex-col flex-shrink-0">
+            
+            <!-- Logo -->
+            <div class="px-4 py-4 border-b border-slate-700/50">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-film text-purple-500 text-xl"></i>
+                    <h1 class="text-lg font-bold gradient-text">RBS AIProducer</h1>
+                </div>
+            </div>
+
+            <!-- Project Selector -->
+            <div class="px-4 py-3 border-b border-slate-700/50">
+                <button class="w-full flex items-center gap-3 bg-slate-800/60 hover:bg-slate-700/60 rounded-lg px-3 py-2 transition-colors">
+                    <img src="/static/images/project-lucy.jpg" alt="Lucy" class="w-10 h-10 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/40'">
+                    <div class="flex-1 text-left">
+                        <div class="text-sm font-semibold text-white">Lucy</div>
+                        <div class="text-xs text-slate-400">Saison 1 • 8 épisodes</div>
+                    </div>
+                    <i class="fas fa-chevron-down text-xs text-slate-400"></i>
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-home w-5 text-center"></i>
+                    <span class="text-sm">Vue d'ensemble</span>
+                </a>
+                <a href="#" class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg bg-purple-600/30 text-white border border-purple-500/30">
+                    <i class="fas fa-th-large w-5 text-center"></i>
+                    <span class="text-sm">Studio</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-users w-5 text-center"></i>
+                    <span class="text-sm">Personnages</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-list-ol w-5 text-center"></i>
+                    <span class="text-sm">Épisodes</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-scroll w-5 text-center"></i>
+                    <span class="text-sm">Scénarios</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-image w-5 text-center"></i>
+                    <span class="text-sm">Storyboard</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-photo-film w-5 text-center"></i>
+                    <span class="text-sm">Assets</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-map-location-dot w-5 text-center"></i>
+                    <span class="text-sm">Lieux</span>
+                </a>
+                <a href="#" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/60 transition-colors">
+                    <i class="fas fa-file-lines w-5 text-center"></i>
+                    <span class="text-sm">Notes de production</span>
+                </a>
+            </nav>
+
+            <!-- Brain du projet -->
+            <div class="px-4 py-3 border-t border-slate-700/50">
+                <div class="bg-gradient-to-br from-purple-900/40 to-slate-800/60 rounded-lg p-3 border border-purple-700/30">
+                    <h4 class="text-sm font-semibold text-white mb-1">Brain du projet</h4>
+                    <p class="text-xs text-slate-400 mb-3">Mémoire active du projet alimentée par l'IA</p>
+                    <div class="flex items-center justify-center">
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                                <i class="fas fa-robot text-white text-lg"></i>
+                            </div>
+                            <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold">
+                                Actif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="px-4 py-3 border-t border-slate-700/50">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.pravatar.cc/150?img=5" alt="User" class="w-9 h-9 rounded-full">
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm font-semibold text-white truncate">Delilah Taleb</div>
+                        <div class="text-xs text-slate-400">Productrice</div>
+                    </div>
+                    <button class="text-slate-400 hover:text-white">
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== CONTENU PRINCIPAL ========== -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+
+            <!-- Top Bar -->
+            <header class="bg-slate-900/60 backdrop-blur-md border-b border-slate-700/50 px-6 py-3 flex items-center justify-between flex-shrink-0">
+                <div class="flex items-center gap-4">
+                    <button class="text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <div class="text-xs text-slate-400">Projet</div>
+                        <button class="flex items-center gap-2 text-white font-semibold hover:text-purple-400 transition-colors">
+                            Lucy
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-slate-400">Dernière sauvegarde : il y a 2 min</span>
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                        <i class="fas fa-save"></i>
+                        Enregistrer
+                    </button>
+                    <button class="relative text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <img src="https://i.pravatar.cc/150?img=5" alt="User" class="w-8 h-8 rounded-full cursor-pointer">
+                </div>
+            </header>
+
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto scrollbar-thin p-6">
+            <div class="max-w-7xl mx-auto space-y-6">
+
+                <!-- ===== PROJECT HEADER (Synopsis + Stats) ===== -->
+                <div class="bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-700/50 p-6">
+                    <div class="flex gap-6">
+                        <!-- Project Image -->
+                        <div class="flex-shrink-0">
+                            <img src="/static/images/project-lucy.jpg" alt="Lucy" class="w-48 h-32 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/192x128/1e1b4b/a78bfa?text=Lucy'">
+                        </div>
+                        
+                        <!-- Project Info - Takes more space -->
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex-1">
+                                    <h2 class="text-2xl font-bold text-white mb-2">Lucy</h2>
+                                    <div class="flex flex-wrap gap-2 mb-3">
+                                        <span class="text-xs bg-purple-600/30 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30">
+                                            <i class="fas fa-moon mr-1"></i>Dark Fantasy
+                                        </span>
+                                        <span class="text-xs bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30">
+                                            <i class="fas fa-tv mr-1"></i>Anime
+                                        </span>
+                                        <span class="text-xs bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full border border-pink-500/30">
+                                            <i class="fas fa-bolt mr-1"></i>Cyberpunk
+                                        </span>
+                                    </div>
+                                </div>
+                                <button class="text-slate-400 hover:text-white transition-colors flex-shrink-0">
+                                    <i class="fas fa-ellipsis-vertical"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-2">
+                                Dans un monde fracturé où les ombres ont conscience, une ancienne gardienne se réveille pour découvrir que les portails qu'elle protégeait autrefois sont maintenant la clé de la survie... ou de la destruction.
+                            </p>
+                            <button class="text-xs text-purple-400 hover:text-purple-300 font-medium">
+                                Voir plus <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                        </div>
+
+                        <!-- Stats - Compact -->
+                        <div class="flex-shrink-0 space-y-3 min-w-[180px]">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-slate-900/40 rounded-lg p-2 border border-slate-700/30">
+                                    <div class="text-xs text-slate-400 mb-1">Saisons</div>
+                                    <div class="text-lg font-bold text-white">1</div>
+                                </div>
+                                <div class="bg-slate-900/40 rounded-lg p-2 border border-slate-700/30">
+                                    <div class="text-xs text-slate-400 mb-1">Épisodes</div>
+                                    <div class="text-lg font-bold text-white">8</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-900/40 rounded-lg p-2 border border-slate-700/30">
+                                <div class="text-xs text-slate-400 mb-1">Statut</div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                    <span class="text-xs text-purple-400 font-medium">En développement</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-700/50">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs text-slate-400">Progression</span>
+                                    <span class="text-xs font-semibold text-white">65%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-1.5">
+                                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 h-1.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Le reste reste identique (pipeline, characters, etc.) -->
+                <!-- ... -->
+
+                            <!-- ===== PIPELINE STEPPER ===== -->
+                            <div class="bg-slate-800/40 backdrop-blur-md rounded-xl border border-slate-700/50 px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="pipeline-step active flex items-center gap-3 flex-1">
+                                        <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold text-sm">1</div>
+                                        <span class="text-sm font-medium text-white">Personnages</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-slate-600 text-xs"></i>
+                                    <div class="pipeline-step completed flex items-center gap-3 flex-1">
+                                        <div class="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                        <span class="text-sm font-medium text-slate-300">Épisodes</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-slate-600 text-xs"></i>
+                                    <div class="pipeline-step flex items-center gap-3 flex-1">
+                                        <div class="w-8 h-8 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center text-slate-400 font-semibold text-sm">3</div>
+                                        <span class="text-sm font-medium text-slate-400">Scénarios</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-slate-600 text-xs"></i>
+                                    <div class="pipeline-step locked flex items-center gap-3 flex-1">
+                                        <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center text-slate-500">
+                                            <i class="fas fa-lock text-xs"></i>
+                                        </div>
+                                        <span class="text-sm font-medium text-slate-500">Storyboard</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-slate-600 text-xs"></i>
+                                    <div class="pipeline-step locked flex items-center gap-3 flex-1">
+                                        <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center text-slate-500">
+                                            <i class="fas fa-lock text-xs"></i>
+                                        </div>
+                                        <span class="text-sm font-medium text-slate-500">Vidéo</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== CHARACTERS SECTION ===== -->
+                            <div class="bg-slate-800/40 backdrop-blur-md rounded-xl border border-slate-700/50 p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Personnages</h3>
+                                        <p class="text-sm text-slate-400">12 personnages créés</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="relative">
+                                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                                            <input type="text" placeholder="Rechercher un personnage..." class="bg-slate-900/60 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 w-64">
+                                        </div>
+                                        <button class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 border border-slate-700">
+                                            <i class="fas fa-filter"></i>
+                                            Filtres
+                                        </button>
+                                        <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                                            <i class="fas fa-plus"></i>
+                                            Ajouter un personnage
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Characters Grid -->
+                                <div class="grid grid-cols-4 gap-4">
+                                    
+                                    <!-- Character Card 1 -->
+                                    <div class="character-card bg-slate-900/60 rounded-xl border border-slate-700/50 overflow-hidden hover:border-purple-500/50 transition-all group">
+                                        <div class="relative aspect-[3/4] bg-gradient-to-br from-purple-900/50 to-slate-900">
+                                            <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=300&h=400&fit=crop" alt="Kairo Ash" class="w-full h-full object-cover">
+                                            <div class="absolute top-2 right-2">
+                                                <button class="w-7 h-7 rounded-full bg-slate-900/80 hover:bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                                                    <i class="fas fa-ellipsis text-xs"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <h4 class="font-bold text-white text-sm mb-0.5">Kairo Ash</h4>
+                                            <p class="text-xs text-slate-400 mb-2">Le Gardien silencieux</p>
+                                            <div class="flex flex-wrap gap-1 mb-2">
+                                                <span class="text-[10px] bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded">Humain</span>
+                                                <span class="text-[10px] bg-purple-600/30 text-purple-300 px-2 py-0.5 rounded">Protagoniste</span>
+                                            </div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-[10px] text-slate-400">Profil complété</span>
+                                                <span class="text-[10px] font-semibold text-green-400">100%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-700 rounded-full h-1 mb-3">
+                                                <div class="bg-green-500 h-1 rounded-full" style="width: 100%"></div>
+                                            </div>
+                                            <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                                                <div class="flex gap-1">
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Profil">
+                                                        <i class="fas fa-user text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Générer">
+                                                        <i class="fas fa-wand-magic-sparkles text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Menu">
+                                                        <i class="fas fa-ellipsis text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Character Card 2 -->
+                                    <div class="character-card bg-slate-900/60 rounded-xl border border-slate-700/50 overflow-hidden hover:border-purple-500/50 transition-all group">
+                                        <div class="relative aspect-[3/4] bg-gradient-to-br from-blue-900/50 to-slate-900">
+                                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop" alt="Luna Vey" class="w-full h-full object-cover">
+                                            <div class="absolute top-2 right-2">
+                                                <button class="w-7 h-7 rounded-full bg-slate-900/80 hover:bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                                                    <i class="fas fa-ellipsis text-xs"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <h4 class="font-bold text-white text-sm mb-0.5">Luna Vey</h4>
+                                            <p class="text-xs text-slate-400 mb-2">L'écho</p>
+                                            <div class="flex flex-wrap gap-1 mb-2">
+                                                <span class="text-[10px] bg-cyan-600/30 text-cyan-300 px-2 py-0.5 rounded">Cyborg</span>
+                                                <span class="text-[10px] bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded">Protagoniste</span>
+                                            </div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-[10px] text-slate-400">Profil complété</span>
+                                                <span class="text-[10px] font-semibold text-green-400">85%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-700 rounded-full h-1 mb-3">
+                                                <div class="bg-green-500 h-1 rounded-full" style="width: 85%"></div>
+                                            </div>
+                                            <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                                                <div class="flex gap-1">
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Profil">
+                                                        <i class="fas fa-user text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Générer">
+                                                        <i class="fas fa-wand-magic-sparkles text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Menu">
+                                                        <i class="fas fa-ellipsis text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Character Card 3 -->
+                                    <div class="character-card bg-slate-900/60 rounded-xl border border-slate-700/50 overflow-hidden hover:border-purple-500/50 transition-all group">
+                                        <div class="relative aspect-[3/4] bg-gradient-to-br from-red-900/50 to-slate-900">
+                                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=400&fit=crop" alt="Vortex" class="w-full h-full object-cover">
+                                            <div class="absolute top-2 right-2">
+                                                <button class="w-7 h-7 rounded-full bg-slate-900/80 hover:bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                                                    <i class="fas fa-ellipsis text-xs"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <h4 class="font-bold text-white text-sm mb-0.5">Vortex</h4>
+                                            <p class="text-xs text-slate-400 mb-2">Le Dévoreur</p>
+                                            <div class="flex flex-wrap gap-1 mb-2">
+                                                <span class="text-[10px] bg-purple-600/30 text-purple-300 px-2 py-0.5 rounded">Entité</span>
+                                                <span class="text-[10px] bg-red-600/30 text-red-300 px-2 py-0.5 rounded">Antagoniste</span>
+                                            </div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-[10px] text-slate-400">Profil complété</span>
+                                                <span class="text-[10px] font-semibold text-green-400">90%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-700 rounded-full h-1 mb-3">
+                                                <div class="bg-green-500 h-1 rounded-full" style="width: 90%"></div>
+                                            </div>
+                                            <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                                                <div class="flex gap-1">
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Profil">
+                                                        <i class="fas fa-user text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Générer">
+                                                        <i class="fas fa-wand-magic-sparkles text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Menu">
+                                                        <i class="fas fa-ellipsis text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Character Card 4 -->
+                                    <div class="character-card bg-slate-900/60 rounded-xl border border-slate-700/50 overflow-hidden hover:border-purple-500/50 transition-all group">
+                                        <div class="relative aspect-[3/4] bg-gradient-to-br from-pink-900/50 to-slate-900">
+                                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=400&fit=crop" alt="Nyx" class="w-full h-full object-cover">
+                                            <div class="absolute top-2 right-2">
+                                                <button class="w-7 h-7 rounded-full bg-slate-900/80 hover:bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                                                    <i class="fas fa-ellipsis text-xs"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <h4 class="font-bold text-white text-sm mb-0.5">Nyx</h4>
+                                            <p class="text-xs text-slate-400 mb-2">L'Oracle</p>
+                                            <div class="flex flex-wrap gap-1 mb-2">
+                                                <span class="text-[10px] bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded">Humain</span>
+                                                <span class="text-[10px] bg-green-600/30 text-green-300 px-2 py-0.5 rounded">Allié</span>
+                                            </div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-[10px] text-slate-400">Profil complété</span>
+                                                <span class="text-[10px] font-semibold text-yellow-400">70%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-700 rounded-full h-1 mb-3">
+                                                <div class="bg-yellow-500 h-1 rounded-full" style="width: 70%"></div>
+                                            </div>
+                                            <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
+                                                <div class="flex gap-1">
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Profil">
+                                                        <i class="fas fa-user text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Générer">
+                                                        <i class="fas fa-wand-magic-sparkles text-xs"></i>
+                                                    </button>
+                                                    <button class="w-6 h-6 rounded hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 transition-colors" title="Menu">
+                                                        <i class="fas fa-ellipsis text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- ===== BOTTOM SECTION: Activity + Alerts ===== -->
+                            <div class="grid grid-cols-2 gap-6">
+                                
+                                <!-- Recent Activity -->
+                                <div class="bg-slate-800/40 backdrop-blur-md rounded-xl border border-slate-700/50 p-6">
+                                    <h4 class="text-lg font-bold text-white mb-4">Activité récente du projet</h4>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3 bg-slate-900/40 rounded-lg p-3 border border-slate-700/30">
+                                            <div class="w-10 h-10 rounded-lg bg-purple-600/30 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-file-lines text-purple-400"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-sm text-white font-medium">Épisode 3 – Script généré</div>
+                                                <div class="text-xs text-slate-400">Il y a 45 min</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 bg-slate-900/40 rounded-lg p-3 border border-slate-700/30">
+                                            <div class="w-10 h-10 rounded-lg bg-blue-600/30 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-microphone text-blue-400"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-sm text-white font-medium">Luna Vey – Voix générée</div>
+                                                <div class="text-xs text-slate-400">Il y a 2 h</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 bg-slate-900/40 rounded-lg p-3 border border-slate-700/30">
+                                            <div class="w-10 h-10 rounded-lg bg-pink-600/30 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-film text-pink-400"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-sm text-white font-medium">Storyboard Ép. 2 – 18 scènes</div>
+                                                <div class="text-xs text-slate-400">Il y a 5 h</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 bg-slate-900/40 rounded-lg p-3 border border-slate-700/30">
+                                            <div class="w-10 h-10 rounded-lg bg-green-600/30 flex items-center justify-center flex-shrink-0">
+                                                <i class="fas fa-image text-green-400"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="text-sm text-white font-medium">Image Kairo – Concept art</div>
+                                                <div class="text-xs text-slate-400">Hier</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Smart Alerts -->
+                                <div class="bg-slate-800/40 backdrop-blur-md rounded-xl border border-slate-700/50 p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-bold text-white">Alertes intelligentes</h4>
+                                        <button class="text-xs text-purple-400 hover:text-purple-300 font-medium">Voir tout</button>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-start gap-3 bg-yellow-900/20 rounded-lg p-3 border border-yellow-700/30">
+                                            <i class="fas fa-triangle-exclamation text-yellow-500 mt-1 flex-shrink-0"></i>
+                                            <div class="flex-1">
+                                                <div class="text-sm text-white font-medium">Épisode 4 n'a pas encore de script</div>
+                                                <button class="text-xs text-purple-400 hover:text-purple-300 mt-1">
+                                                    Générer avec l'IA <i class="fas fa-arrow-right ml-1"></i>
+                                                </button>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-slate-500 text-xs"></i>
+                                        </div>
+                                        <div class="flex items-start gap-3 bg-orange-900/20 rounded-lg p-3 border border-orange-700/30">
+                                            <i class="fas fa-triangle-exclamation text-orange-500 mt-1 flex-shrink-0"></i>
+                                            <div class="flex-1">
+                                                <div class="text-sm text-white font-medium">Le personnage Nyx n'apparaît pas dans les épisodes 5 à 8</div>
+                                                <button class="text-xs text-purple-400 hover:text-purple-300 mt-1">
+                                                    Analyser <i class="fas fa-arrow-right ml-1"></i>
+                                                </button>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-slate-500 text-xs"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+
+        <!-- ========== AI PANEL (RIGHT) ========== -->
+        <aside id="aiPanel" class="w-96 bg-slate-900/90 backdrop-blur-md border-l border-slate-700/50 flex flex-col flex-shrink-0 transition-all">
+           <!-- Radar Waves (visible when collapsed) -->
+            <div class="radar-wave"></div>
+            <div class="radar-wave"></div>
+            <div class="radar-wave"></div>
+
+            <!-- Robot Toggle Button -->
+            <button class="robot-toggle vibrating" title="Toggle AI Assistant">
+                <i class="fas fa-robot"></i>
+            </button> 
+            <!-- AI Header -->
+            <div class="p-4 border-b border-slate-700/50">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">RBS Producer AI</h3>
+                            <p class="text-xs text-slate-400">Votre producteur IA dédié à Lucy</p>
+                        </div>
+                    </div>
+                    <button id="closeAiPanel" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span class="text-xs text-green-400">En ligne</span>
+                </div>
+                <div class="flex gap-2">
+                    <button class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-comments"></i>
+                        Chat
+                    </button>
+                    <button class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 border border-slate-700">
+                        <i class="fas fa-brain"></i>
+                        Mémoire du projet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="flex-1 overflow-y-auto scrollbar-thin p-4 space-y-4">
+                
+                <!-- AI Message -->
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1 bg-purple-900/40 rounded-lg p-3 border border-purple-700/30">
+                        <p class="text-sm text-slate-200">Bonjour Delilah ! 👋<br>Prêt à travailler sur Lucy aujourd'hui ? Que souhaitez-vous développer ?</p>
+                    </div>
+                </div>
+
+                <!-- User Message -->
+                <div class="flex gap-3 flex-row-reverse">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-user text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1 bg-slate-800 rounded-lg p-3 border border-slate-700">
+                        <p class="text-sm text-slate-200">J'aimerais développer le personnage Kairo Ash plus en profondeur.</p>
+                    </div>
+                </div>
+
+                <!-- AI Message with suggestions -->
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1 space-y-3">
+                        <div class="bg-purple-900/40 rounded-lg p-3 border border-purple-700/30">
+                            <p class="text-sm text-slate-200 mb-2">Parfait ! Voici ce que je sais déjà sur Kairo Ash :</p>
+                            <ul class="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                                <li>Ancien soldat devenu Gardien</li>
+                                <li>Maîtrise des portails dimensionnels</li>
+                                <li>Traumatisé par la perte de son équipe</li>
+                                <li>Recherche la vérité sur les failles</li>
+                            </ul>
+                            <p class="text-sm text-slate-200 mt-2">Que souhaitez-vous explorer en priorité ?</p>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg text-xs font-medium transition-colors border border-slate-700 text-left">
+                                Développer son histoire
+                            </button>
+                            <button class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg text-xs font-medium transition-colors border border-slate-700 text-left">
+                                Créer ses dialogues
+                            </button>
+                            <button class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg text-xs font-medium transition-colors border border-slate-700 text-left">
+                                Générer son apparence
+                            </button>
+                            <button class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg text-xs font-medium transition-colors border border-slate-700 text-left">
+                                Explorer ses relations
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-slate-700/50">
+                <div class="flex gap-2">
+                    <input type="text" placeholder="Posez votre question..." class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+<!-- Floating AI Toggle (visible when panel is closed) -->
+<button id="openAiPanel" class="fixed right-4 bottom-4 w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/50 flex items-center justify-center transition-all z-50">
+    <i class="fas fa-robot text-xl"></i>
+</button>
+
+    <script src="/static/js/studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+/* ===== BASE STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+}
+
+/* ===== UTILITIES ===== */
+.gradient-text {
+    background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-100px) translateX(50px); }
+    50% { transform: translateY(-50px) translateX(-50px); }
+    75% { transform: translateY(-150px) translateX(30px); }
+}
+
+@keyframes vibrate {
+    0%   { transform: translateY(-50%) translate(0, 0); }
+    25%  { transform: translateY(-50%) translate(-1px, 1px); }
+    50%  { transform: translateY(-50%) translate(1px, -1px); }
+    75%  { transform: translateY(-50%) translate(-1px, -1px); }
+    100% { transform: translateY(-50%) translate(1px, 1px); }
+}
+
+@keyframes radarPulse {
+    0% {
+        width: 50px;
+        height: 50px;
+        right: 0;
+        opacity: 0.8;
+        border-width: 2px;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        right: -35px;
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+@keyframes robotGlow {
+    0%, 100% { 
+        box-shadow: 0 0 25px rgba(236, 72, 153, 0.9), 0 0 50px rgba(124, 58, 237, 0.5);
+    }
+    50% { 
+        box-shadow: 0 0 35px rgba(236, 72, 153, 1), 0 0 70px rgba(124, 58, 237, 0.8);
+    }
+}
+
+/* ===== LANDING PAGE ===== */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg, 
+        rgba(10, 10, 15, 0.35) 0%, 
+        rgba(26, 10, 46, 0.25) 100%
+    );
+    z-index: -1;
+}
+
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transform: translateZ(0);
+}
+
+.particle {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(167, 139, 250, 0.3);
+    animation: float 20s infinite;
+}
+
+.auth-panel {
+    backdrop-filter: blur(20px);
+    background: rgba(15, 15, 25, 0.95);
+    border-left: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.auth-panel.collapsed {
+    width: 80px !important;
+}
+
+.auth-panel.collapsed .auth-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth-content {
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    height: 100%;
+    padding: 2rem;
+}
+
+.logo-toggle {
+    position: fixed;
+    /* right = largeur actuelle du panneau - moitié de la largeur du bouton,
+       pour que le CENTRE du cercle repose exactement sur le bord gauche du
+       panneau — jamais coupé, puisqu'il est en dehors du panneau (donc hors
+       de portée de son overflow:hidden), contrairement à avant. */
+    right: calc(420px - 30px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #dc2626, #ec4899);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1), transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+    z-index: 30;
+    padding: 0;
+    overflow: hidden;
+}
+
+.logo-toggle-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.logo-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.7);
+}
+
+/* Suit la largeur réduite du panneau (80px) quand il est replié, pour que le
+   cercle reste bien collé au bord, jamais coupé. */
+.auth-panel.collapsed ~ .logo-toggle,
+#authPanel.collapsed + .logo-toggle {
+    right: calc(80px - 30px);
+}
+
+.auth-panel.collapsed ~ .logo-toggle {
+    animation: logoPulse 2s infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5); }
+    50% { box-shadow: 0 4px 25px rgba(236, 72, 153, 0.8); }
+}
+
+.tab-active {
+    border-bottom: 2px solid #a78bfa;
+    color: white;
+}
+
+.form-input {
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+
+/* ===== STUDIO LAYOUT ===== */
+.chat-panel {
+    transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: visible;
+}
+
+.chat-panel.collapsed {
+    width: 0px !important;
+    min-width: 0 !important;
+    border: none !important;
+}
+
+.chat-panel.collapsed .chat-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.chat-content {
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    min-width: 384px;
+}
+
+.robot-toggle {
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.robot-toggle i {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.chat-panel.collapsed .robot-toggle {
+    position: fixed;
+    right: 0;
+    left: auto;
+    transform: translateY(-50%) translateX(50%);
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.9), 0 0 50px rgba(124, 58, 237, 0.5);
+    animation: robotGlow 2s ease-in-out infinite;
+}
+
+.robot-toggle.vibrating {
+    animation: vibrate 0.15s infinite;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+}
+
+.radar-wave {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(236, 72, 153, 0.6);
+    pointer-events: none;
+    z-index: 25;
+    opacity: 0;
+}
+
+.chat-panel.collapsed .radar-wave {
+    animation: radarPulse 2s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+}
+
+.chat-panel.collapsed .radar-wave:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.chat-panel.collapsed .radar-wave:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* ===== COMPONENTS ===== */
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.character-card {
+    transition: all 0.3s ease;
+}
+
+.character-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.pipeline-step {
+    transition: all 0.3s ease;
+}
+
+.pipeline-step:hover {
+    transform: scale(1.05);
+}
+
+.chat-bubble {
+    animation: slideIn 0.3s ease;
+}
+
+/* ===== SCROLLBAR ===== */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 3px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .chat-panel {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+    
+    .robot-toggle {
+        left: auto;
+        right: 100%;
+        transform: translateX(50%) translateY(-50%);
+    }
+}

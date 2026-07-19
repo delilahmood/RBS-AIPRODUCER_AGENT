@@ -1,0 +1,35 @@
+# Sauvegardes / temporaires
+*.bak
+*_backup/
+*.old
+*~
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Environnement / secrets
+.env
+
+# Base de données locale
+*.db
+
+# Assets générés
+app/static/assets/videos/
+app/static/assets/images/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# video / image assets
+app/static/assets/assembled/
+app/static/assets/characters/
+app/static/assets/covers/
+app/static/assets/locations/
+app/static/assets/projects/
+app/static/assets/scenes/
+app/static/assets/storyboards/
+app/static/assets/videos/

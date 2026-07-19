@@ -1,0 +1,99 @@
+<div class="p-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h2 class="text-3xl font-bold text-white mb-2">Video</h2>
+            <p class="text-slate-400">Generate and review video scenes</p>
+        </div>
+        <div class="flex gap-3">
+            <select class="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm">
+                <option>Wan Model</option>
+                <option>HappyHorse</option>
+            </select>
+            <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                <i class="fas fa-video"></i>
+                Generate Video
+            </button>
+        </div>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="grid grid-cols-3 gap-6 mb-8">
+        
+        <!-- Video 1 - Generated -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden">
+            <div class="aspect-video bg-gradient-to-br from-purple-900/50 to-slate-900 flex items-center justify-center relative">
+                <i class="fas fa-play-circle text-5xl text-white/80"></i>
+                <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">0:45</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-semibold text-white">Scene 1 - Portal Chamber</span>
+                    <span class="text-xs bg-green-600/30 text-green-300 px-2 py-1 rounded">Approved</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                    <span><i class="fas fa-clock mr-1"></i> 45s</span>
+                    <span><i class="fas fa-thumbs-up mr-1 text-green-500"></i> Liked</span>
+                </div>
+                <div class="flex gap-2">
+                    <button class="flex-1 bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded text-xs flex items-center justify-center gap-1">
+                        <i class="fas fa-redo"></i> Regenerate
+                    </button>
+                    <button class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded text-xs flex items-center justify-center gap-1">
+                        <i class="fas fa-archive"></i> Archive
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video 2 - Processing -->
+        <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden">
+            <div class="aspect-video bg-gradient-to-br from-blue-900/50 to-slate-900 flex items-center justify-center relative">
+                <div class="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full"></div>
+                <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">Processing</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-semibold text-white">Scene 2 - Kairo's Choice</span>
+                    <span class="text-xs bg-yellow-600/30 text-yellow-300 px-2 py-1 rounded">Generating</span>
+                </div>
+                <div class="w-full bg-slate-700 rounded-full h-2 mb-3">
+                    <div class="bg-purple-600 h-2 rounded-full" style="width: 65%"></div>
+                </div>
+                <p class="text-xs text-slate-500">Estimated: 2 min remaining</p>
+            </div>
+        </div>
+
+        <!-- Video 3 - Not Generated -->
+        <div class="bg-slate-800/40 rounded-xl border-2 border-dashed border-slate-700 flex flex-col items-center justify-center min-h-[280px] cursor-pointer hover:border-purple-500 transition-colors">
+            <i class="fas fa-video text-4xl text-slate-600 mb-3"></i>
+            <p class="text-slate-400 text-sm mb-2">Scene 3 - The Betrayal</p>
+            <button class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-xs flex items-center gap-1">
+                <i class="fas fa-play"></i> Generate
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Video Player Preview -->
+    <div class="bg-slate-800/80 rounded-xl border border-slate-700 overflow-hidden">
+        <div class="aspect-video bg-black flex items-center justify-center">
+            <div class="text-center">
+                <i class="fas fa-play-circle text-6xl text-white/50 mb-4"></i>
+                <p class="text-slate-400">Select a video to preview</p>
+            </div>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button class="text-white hover:text-purple-400"><i class="fas fa-play"></i></button>
+                <button class="text-slate-400 hover:text-white"><i class="fas fa-pause"></i></button>
+                <span class="text-slate-400 text-sm">0:00 / 0:45</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="text-slate-400 hover:text-white"><i class="fas fa-volume-up"></i></button>
+                <button class="text-slate-400 hover:text-white"><i class="fas fa-expand"></i></button>
+            </div>
+        </div>
+    </div>
+
+</div>

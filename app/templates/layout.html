@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBS AIProducer - Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/studio.css">
+</head>
+<body class="h-screen overflow-hidden bg-slate-950">
+
+    <!-- Header -->
+    <header class="bg-slate-950 border-b border-purple-900/30 px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-film text-purple-500 text-2xl"></i>
+                <h1 class="text-2xl font-bold gradient-text">RBS AIProducer</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <span class="text-slate-400 text-sm">Project: <span id="project-title" class="text-white font-semibold">Guardians of the Void</span></span>
+                <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pipeline -->
+    <div class="bg-slate-900 border-b border-purple-900/30 px-6 py-4">
+        <div class="flex items-center justify-between gap-2">
+            <div class="pipeline-step flex-1 bg-gradient-to-br from-purple-600 to-violet-700 rounded-lg p-4 text-center cursor-pointer border-2 border-purple-400 shadow-lg shadow-purple-500/30" data-step="characters">
+                <i class="fas fa-users text-2xl text-white mb-2"></i>
+                <div class="text-sm font-medium text-white">1. Characters</div>
+                <div class="text-xs text-purple-200 mt-1">Active</div>
+            </div>
+            <i class="fas fa-chevron-right text-slate-600"></i>
+            <div class="pipeline-step flex-1 bg-slate-800 hover:bg-slate-700 rounded-lg p-4 text-center cursor-pointer border border-slate-700" data-step="episodes">
+                <i class="fas fa-list-ol text-2xl text-slate-400 mb-2"></i>
+                <div class="text-sm font-medium text-slate-300">2. Episodes</div>
+            </div>
+            <i class="fas fa-chevron-right text-slate-600"></i>
+            <div class="pipeline-step flex-1 bg-slate-800 hover:bg-slate-700 rounded-lg p-4 text-center cursor-pointer border border-slate-700" data-step="scripts">
+                <i class="fas fa-scroll text-2xl text-slate-400 mb-2"></i>
+                <div class="text-sm font-medium text-slate-300">3. Scripts</div>
+            </div>
+            <i class="fas fa-chevron-right text-slate-600"></i>
+            <div class="pipeline-step flex-1 bg-slate-800 hover:bg-slate-700 rounded-lg p-4 text-center cursor-pointer border border-slate-700" data-step="storyboard">
+                <i class="fas fa-image text-2xl text-slate-400 mb-2"></i>
+                <div class="text-sm font-medium text-slate-300">4. Storyboard</div>
+            </div>
+            <i class="fas fa-chevron-right text-slate-600"></i>
+            <div class="pipeline-step flex-1 bg-slate-800 hover:bg-slate-700 rounded-lg p-4 text-center cursor-pointer border border-slate-700" data-step="video">
+                <i class="fas fa-video text-2xl text-slate-400 mb-2"></i>
+                <div class="text-sm font-medium text-slate-300">5. Video</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex h-[calc(100vh-180px)]">
+        
+        <!-- Main Workspace (LEFT SIDE) -->
+        <main id="main-content" class="flex-1 overflow-y-auto scrollbar-thin bg-gradient-to-br from-slate-950 via-purple-950/10 to-slate-950">
+            
+            <!-- Characters Tab (Default) -->
+            <div id="tab-characters" class="tab-content p-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-2">Characters</h2>
+                        <p class="text-slate-400">Create and manage your characters</p>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                        <i class="fas fa-plus"></i>
+                        Add Character
+                    </button>
+                </div>
+
+                <!-- Characters Grid -->
+                <div class="grid grid-cols-3 gap-6 mb-8">
+                    <!-- Character 1 -->
+                    <div class="character-card bg-slate-800/80 rounded-xl p-6 border border-slate-700 cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl font-bold text-white">K</div>
+                            <span class="bg-purple-600/30 text-purple-300 text-xs px-3 py-1 rounded-full">Protagonist</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Kairo Ash</h3>
+                        <p class="text-sm text-slate-400 mb-3">Alias: The Silent Guardian</p>
+                        <p class="text-sm text-slate-300 mb-4 line-clamp-2">28 years old, former soldier turned guardian of dimensional portals...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="text-xs bg-blue-600/30 text-blue-300 px-2 py-1 rounded">Human</span>
+                                <span class="text-xs bg-red-600/30 text-red-300 px-2 py-1 rounded">Hot-tempered</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-400 text-sm">
+                                <i class="fas fa-image"></i>
+                                <span>5 refs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Character 2 -->
+                    <div class="character-card bg-slate-800/80 rounded-xl p-6 border border-slate-700 cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-2xl font-bold text-white">L</div>
+                            <span class="bg-blue-600/30 text-blue-300 text-xs px-3 py-1 rounded-full">Protagonist</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Luna Vey</h3>
+                        <p class="text-sm text-slate-400 mb-3">Alias: The Echo</p>
+                        <p class="text-sm text-slate-300 mb-4 line-clamp-2">25 years old, genius hacker capable of manipulating energy flows...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Cyborg</span>
+                                <span class="text-xs bg-green-600/30 text-green-300 px-2 py-1 rounded">Intuitive</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-400 text-sm">
+                                <i class="fas fa-image"></i>
+                                <span>3 refs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Character 3 -->
+                    <div class="character-card bg-slate-800/80 rounded-xl p-6 border border-slate-700 cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-2xl font-bold text-white">V</div>
+                            <span class="bg-red-600/30 text-red-300 text-xs px-3 py-1 rounded-full">Antagonist</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Vortex</h3>
+                        <p class="text-sm text-slate-400 mb-3">Alias: The Devourer</p>
+                        <p class="text-sm text-slate-300 mb-4 line-clamp-2">Interdimensional entity seeking to merge all worlds...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-2">
+                                <span class="text-xs bg-purple-600/30 text-purple-300 px-2 py-1 rounded">Entity</span>
+                                <span class="text-xs bg-yellow-600/30 text-yellow-300 px-2 py-1 rounded">Manipulator</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-400 text-sm">
+                                <i class="fas fa-image"></i>
+                                <span>4 refs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Relations -->
+                <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-project-diagram text-purple-400"></i>
+                        Character Relations
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-white">Kairo</span>
+                                <i class="fas fa-heart text-red-500"></i>
+                                <span class="font-semibold text-white">Luna</span>
+                            </div>
+                            <span class="text-sm text-slate-400">Romantic Allies</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-white">Kairo</span>
+                                <i class="fas fa-skull text-red-600"></i>
+                                <span class="font-semibold text-white">Vortex</span>
+                            </div>
+                            <span class="text-sm text-slate-400">Mortal Enemies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episodes Tab -->
+            <div id="tab-episodes" class="tab-content hidden p-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-2">Episodes</h2>
+                        <p class="text-slate-400">Structure your narrative by season and episode</p>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                        <i class="fas fa-plus"></i>
+                        Add Episode
+                    </button>
+                </div>
+                <p class="text-slate-400 text-center py-12">Episodes content will be loaded here...</p>
+            </div>
+
+            <!-- Scripts Tab -->
+            <div id="tab-scripts" class="tab-content hidden p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">Scripts</h2>
+                <p class="text-slate-400">Cinematic scripts generated scene by scene</p>
+            </div>
+
+            <!-- Storyboard Tab -->
+            <div id="tab-storyboard" class="tab-content hidden p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">Storyboard</h2>
+                <p class="text-slate-400">Visual prompts for image generation</p>
+            </div>
+
+            <!-- Video Tab -->
+            <div id="tab-video" class="tab-content hidden p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">Video</h2>
+                <p class="text-slate-400">Generate and review video scenes</p>
+            </div>
+
+        </main>
+
+        <!-- Chat Panel (RIGHT SIDE) -->
+        <aside id="chatPanel" class="chat-panel w-96 bg-gradient-to-b from-purple-950 via-violet-950 to-purple-950 border-l border-pink-800/40 flex flex-col flex-shrink-0">
+            
+            <!-- Radar Waves -->
+            <div class="radar-wave"></div>
+            <div class="radar-wave"></div>
+            <div class="radar-wave"></div>
+            
+            <!-- Robot Toggle Button -->
+            <button id="toggleChat" class="robot-toggle vibrating" title="Toggle AI Assistant">
+                <i class="fas fa-robot"></i>
+            </button>
+
+            <!-- Chat Content -->
+            <div class="chat-content flex flex-col h-full">
+                <!-- Agent Header -->
+                <div class="p-4 border-b border-pink-800/30">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-robot text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">AI Agent</h3>
+                            <p class="text-xs text-purple-300">Qwen-Max • Context Active</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                            <i class="fas fa-magic"></i>
+                            Generate
+                        </button>
+                        <button class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                            <i class="fas fa-clock-rotate-left"></i>
+                            Memory
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="flex-1 overflow-y-auto scrollbar-thin p-4 space-y-4">
+                    <div class="chat-bubble flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1 bg-slate-800/80 rounded-lg p-3 border border-purple-800/30">
+                            <p class="text-sm text-slate-200">Hi! I'm ready to help you develop your characters. What would you like to create today?</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-bubble flex gap-3 flex-row-reverse">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1 bg-purple-600/30 rounded-lg p-3 border border-purple-600/50">
+                            <p class="text-sm text-slate-200">Add a new antagonist character with a mysterious past</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-bubble flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1 bg-slate-800/80 rounded-lg p-3 border border-purple-800/30">
+                            <p class="text-sm text-slate-200">Perfect! I suggest "Shadow", a betrayed former ally seeking revenge. He masters shadows and can teleport. Want me to create his full profile?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input -->
+                <div class="p-4 border-t border-pink-800/30">
+                    <div class="flex gap-2">
+                        <input type="text" id="chat-input" placeholder="Ask the AI..." class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500">
+                        <button id="chat-send" class="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg transition-all">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/static/js/studio.js"></script>
+</body>
+</html>
